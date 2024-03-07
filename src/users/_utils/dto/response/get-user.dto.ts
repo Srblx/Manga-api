@@ -1,9 +1,10 @@
+import { Types } from 'mongoose';
 import { UserRoleEnum } from '../../user-role.enum';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class GetUserDto {
   @ApiProperty()
-  id: string;
+  id: string | Types.ObjectId;
 
   @ApiProperty()
   firstname: string;

@@ -5,7 +5,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UsersMapper {
-/*   static  */toGetUserDto = (user: UserDocument): GetUserDto => ({
+toGetUserDto = (user: UserDocument): GetUserDto => ({
     id: user._id,
     email: user.email,
     firstname: user.firstname,
@@ -13,7 +13,7 @@ export class UsersMapper {
     role: user.role,
   });
 
-/*   static  */toGetMeDto = (user: UserDocument): GetMeDto => ({
+toGetMeDto = (user: UserDocument): GetMeDto => ({
     id: user._id,
     email: user.email,
     firstname: user.firstname,
@@ -21,6 +21,3 @@ export class UsersMapper {
     role: user.role,
   });
 }
-
-//table news avec get new et create news seul les admin peuvent create new que ce soit dans le back ou le front le securiste erreur si non admin et dans le from aussi 
-// new dossier ajouter des mapper + repository 

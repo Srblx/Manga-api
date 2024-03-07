@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EnvironmentVariables, validateEnv } from './_utils/config';
 import { NewsModule } from './news/news.module';
+import { LikesModule } from './likes/likes.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { NewsModule } from './news/news.module';
     }),
     AuthModule,
     UsersModule,
-    NewsModule
+    NewsModule,
+    LikesModule
   ],
   controllers: [AppController],
   providers: [AppService],
