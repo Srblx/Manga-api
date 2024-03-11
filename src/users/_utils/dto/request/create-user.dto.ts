@@ -19,7 +19,7 @@ export class CreateUserDto {
   @IsString()
   lastname: string;
 
-  @ApiProperty()
-  @IsEnum(UserRoleEnum) 
-  role: UserRoleEnum;
+  // @ApiProperty()
+  // @IsEnum(UserRoleEnum) 
+  // role: UserRoleEnum;
 }

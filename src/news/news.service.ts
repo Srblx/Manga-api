@@ -51,5 +51,5 @@ export class NewsService {
   async updateNews(newsId: string, updateNewsDto: UpdateNewsDto): Promise<GetNewsDto> {
     const updatedNews = await this.newsRepository.updateNews(newsId, updateNewsDto);
     return this.newsMapper.toGetNewDto(updatedNews);
-}
+  }
 }
