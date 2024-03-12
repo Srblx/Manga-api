@@ -27,6 +27,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "class-validator-extended": "^4.0.0",
+    "cypress": "^13.6.6",
     "dayjs": "^1.11.10",
     "lodash": "^4.17.21",
     "mongoose": "^8.1.3",
