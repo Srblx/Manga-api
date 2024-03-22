@@ -1,7 +1,7 @@
-import { BadRequestException, Injectable, NotFoundException, PipeTransform } from "@nestjs/common";
-import { NewsRepository } from "../news.repository";
-import { isValidObjectId } from "mongoose";
-import { NewsDocument } from "../news.schema";
+import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
+import { isValidObjectId } from 'mongoose';
+import { NewsRepository } from '../news.repository';
+import { NewsDocument } from '../news.schema';
 
 @Injectable()
 export class NewsByIdPipe implements PipeTransform {

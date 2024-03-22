@@ -1,24 +1,18 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { NewsRepository } from './news.repository';
-import { GetNewsDto } from './dto/response/get-news.dto';
-import { UsersMapper } from 'src/users/users.mapper';
-import { NewsMapper } from './news.mapper';
-import { News, NewsDocument } from './news.schema';
-import { CreateNewsDto } from './dto/request/createNews.dto';
-import { UserDocument } from 'src/users/users.schema';
-import { Model } from 'mongoose';
-import { InjectModel } from '@nestjs/mongoose';
-import { UpdateNewsDto } from './dto/request/updateNews.dto';
 import { LikesRepository } from 'src/likes/likes.repository';
-import { log } from 'console';
-import { LikesDocument } from 'src/likes/likes.schema';
+import { UserDocument } from 'src/users/users.schema';
+import { CreateNewsDto } from './dto/request/createNews.dto';
+import { UpdateNewsDto } from './dto/request/updateNews.dto';
+import { GetNewsDto } from './dto/response/get-news.dto';
+import { NewsMapper } from './news.mapper';
+import { NewsRepository } from './news.repository';
+import { NewsDocument } from './news.schema';
 
 @Injectable()
 export class NewsService {
   constructor(
     private readonly newsRepository: NewsRepository,
     private readonly newsMapper: NewsMapper,
-    // @InjectModel(News.name) private newsModel: Model<News>,
     private readonly likesRepository: LikesRepository,
   ) {}
 

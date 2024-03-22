@@ -1,16 +1,16 @@
-import { BadRequestException, Body, Controller, Delete, Get, HttpException, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, Param, Patch, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { NewsService } from './news.service';
+import mongoose from 'mongoose';
+import { ConnectedUser } from 'src/auth/_utils/decorator/connected-user.decorator';
 import { Protect } from 'src/auth/_utils/decorator/protect.decorator';
+import { UserRoleEnum } from 'src/users/_utils/user-role.enum';
+import { UserDocument } from 'src/users/users.schema';
+import { NewsByIdPipe } from './dto/news-by-id.pipe';
+import { CreateNewsDto } from './dto/request/createNews.dto';
+import { UpdateNewsDto } from './dto/request/updateNews.dto';
 import { GetNewsDto } from './dto/response/get-news.dto';
 import { NewsDocument } from './news.schema';
-import { CreateNewsDto } from './dto/request/createNews.dto';
-import { UserRoleEnum } from 'src/users/_utils/user-role.enum';
-import { ConnectedUser } from 'src/auth/_utils/decorator/connected-user.decorator';
-import { UserDocument } from 'src/users/users.schema';
-import mongoose from 'mongoose';
-import { NewsByIdPipe } from './dto/news-by-id.pipe';
-import { UpdateNewsDto } from './dto/request/updateNews.dto';
+import { NewsService } from './news.service';
 
 @ApiTags('News')
 @Controller('news')
@@ -44,10 +44,11 @@ export class NewsControler {
   @Protect(UserRoleEnum.ADMIN)
   async deleteNews(@Param('newsId', NewsByIdPipe) newsToDelete: NewsDocument) {
     await this.newsService.deleteNews(newsToDelete);
+    return { delete: 'succes' };
   }
 
-  @Patch(':newsId')
   @Protect()
+  @Patch(':newsId')
   async updateNews(@Param('newsId', NewsByIdPipe) newsToUpdate: NewsDocument, @Body() updateNewsDto: UpdateNewsDto) {
     return this.newsService.updateNews(newsToUpdate._id, updateNewsDto);
   }

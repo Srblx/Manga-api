@@ -1,13 +1,16 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleModule } from '@nestjs/schedule';
+import { EnvironmentVariables, validateEnv } from './_utils/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
-import { EnvironmentVariables, validateEnv } from './_utils/config';
-import { NewsModule } from './news/news.module';
 import { LikesModule } from './likes/likes.module';
+import { CounterRequestModule } from './middleware/counter-request.module';
+import { LoggerMiddleware } from './middleware/logger.middleware';
+import { NewsModule } from './news/news.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -23,9 +26,19 @@ import { LikesModule } from './likes/likes.module';
     AuthModule,
     UsersModule,
     NewsModule,
-    LikesModule
+    LikesModule,
+    CounterRequestModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        LoggerMiddleware
+      )
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}

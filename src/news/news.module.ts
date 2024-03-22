@@ -1,16 +1,15 @@
 import { Module, forwardRef } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Mongoose } from 'mongoose';
+import { EnvironmentVariables } from 'src/_utils/config';
+import { LikesModule } from 'src/likes/likes.module';
+import { UsersModule } from 'src/users/users.module';
+import { NewsControler } from './news.controller';
+import { NewsMapper } from './news.mapper';
+import { NewsRepository } from './news.repository';
 import { News, NewsSchema } from './news.schema';
 import { NewsService } from './news.service';
-import { NewsRepository } from './news.repository';
-import { NewsControler } from './news.controller';
-import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { EnvironmentVariables } from 'src/_utils/config';
-import { UsersModule } from 'src/users/users.module';
-import { NewsMapper } from './news.mapper';
-import { LikesModule } from 'src/likes/likes.module';
 
 @Module({
   imports: [

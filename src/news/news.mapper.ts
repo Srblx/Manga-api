@@ -1,8 +1,7 @@
+import { Injectable } from '@nestjs/common';
+import { UsersMapper } from 'src/users/users.mapper';
 import { GetNewsDto } from './dto/response/get-news.dto';
 import { NewsDocument } from './news.schema';
-import { UsersMapper } from 'src/users/users.mapper';
-import { Injectable } from '@nestjs/common';
-import { log } from 'console';
 
 @Injectable()
 export class NewsMapper {
