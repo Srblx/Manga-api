@@ -5,7 +5,7 @@ export type CounterRequestDocument = CounterRequest & Document;
 
 @Schema({ versionKey: false, timestamps: true })
 export class CounterRequest {
-  @Prop()
+  @Prop() // @Prop({ type: String, required: true }) toujous spécifier des infos dans les @Prop
   pathName: string;
 
   @Prop({ type: Number, default: 1 })

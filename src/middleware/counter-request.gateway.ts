@@ -6,7 +6,7 @@ export class CounterRequestGateway {
   @WebSocketServer()
   server: Server;
 
-  @SubscribeMessage('counterRequest')
+  @SubscribeMessage('counterRequest') // plus utile car on ne recoit rien du front
   sendCounterRequest(@MessageBody('number') payload: number): number {
     this.server.emit('counterRequest', payload);
     return payload;

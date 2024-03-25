@@ -35,7 +35,7 @@ export class NewsService {
   async deleteNews(newsDocument: NewsDocument) {
     const likes = await this.likesRepository.findByNewsId(newsDocument._id);
     await this.newsRepository.deleteNews(newsDocument);
-    if (likes && likes.length > 0) {
+    if (likes && likes.length > 0) { // utiliser un Promise.all pour question de performance (toutes les requetes sont executées en parallele)
       for (const like of likes) {
         await this.likesRepository.deleteLike(like.id);
       }
