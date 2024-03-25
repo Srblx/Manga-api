@@ -35,7 +35,7 @@ export class NewsRepository {
 
   async updateNews(newsId: string, updateNewsDto: UpdateNewsDto): Promise<NewsDocument> {
     const updatedNews = await this.model.findByIdAndUpdate(newsId, updateNewsDto, { new: true }).exec();
-    if (!updatedNews) throw new NotFoundException('NEWS_NOT_FOUND');
+    if (!updatedNews) throw new NotFoundException('NEWS_NOT_FOUND'); // normalement ce check plutot dans le service avant d'appeler le repository, mais dans ce cas, meme pas besoin car le newsByIdPipe du controller s'en charge
     return updatedNews;
   }
 }
